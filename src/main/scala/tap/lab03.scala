@@ -24,12 +24,13 @@ object lab03:
   def f1[A,B](la: List[A],lb:List[B]):String = 
     (la.map(_.toString) zip lb).flatMap(x  => Seq(x._1, x._2)).mkString
 
-  def f2[A,B](la: List[A],lb:List[B]):String = la.concat(lb).mkString
+  def f2[A,B](la: List[A],lb:List[B]):String = (la ::: lb).mkString
 
-  def f3[A,B](la: List[A],lb:List[B]):String = (la.reverse).concat(lb).mkString
+  def f3[A,B](la: List[A],lb:List[B]):String = (la.reverse ::: lb).mkString
 
-  def f4[A,B](la: List[A],lb:List[B]):String =
-    ???
+  def f4[A,B](la: List[A],lb:List[B]):String = (la.reverse.flatMap(elem => elem.toString().reverse) ::: lb).mkString
+
+
 
 
 

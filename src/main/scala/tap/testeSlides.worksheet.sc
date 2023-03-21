@@ -59,3 +59,5 @@ case Div(a,b) => eval(a)/eval(b)
 case Val(v) => v }
 
 eval(Sum(Val(1),Val(2)))
+
+val v1 = 1

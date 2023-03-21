@@ -14,11 +14,12 @@ bList.flatten
 //> b)
 bList.map(_.length)
 
-//> c)
+//> c) OBS
 bList.flatten :: aList :: Nil
 
-//> d)
+//> d) OBS
 dList :: List(e) :: Nil
+
 
 //> e)
 fList :: List(g.toString()) :: Nil 
@@ -54,15 +55,13 @@ def applyF_[A,B](la: List[A],lb:List[B])(f: (List[A],List[B]) => String) : Strin
 def f1[A,B](la: List[A],lb:List[B]):String = 
     (la zip lb).flatMap(tuple => Seq(tuple._1, tuple._2)).mkString
 
-def f2[A,B](la: List[A], lb:List[B]): String = la.concat(lb).mkString
+def f2[A,B](la: List[A], lb:List[B]): String = (la ::: lb).mkString
 
-def f3[A,B](la: List[A], lb:List[B]): String = (la.reverse).concat(lb).mkString
+def f3[A,B](la: List[A], lb:List[B]): String = ((la.reverse) ::: lb).mkString
 
 // 3291aabc
 def f4[A,B](la: List[A], lb:List[B]): String = 
-    (la.reverse).take(2).mkString + 
-    ().toString.map(_.asDigit).mkString +
-    lb.mkString
+    (la.reverse.flatMap(elem => elem.toString().reverse) ::: lb).mkString
 
 
 applyF_(List(19, 2, 3), List("aa", "b", "c"))(f4) 
