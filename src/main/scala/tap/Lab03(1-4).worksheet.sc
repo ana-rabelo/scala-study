@@ -48,20 +48,3 @@ val x = (i: Int) => if (i < 0) -i else i
 List(1, 2, 3, -1, -2, -3, 0).map(x)
 //> Result: List[Int] = List(1, 2, 3, 1, 2, 3, 0)
 
-def applyF_[A,B](la: List[A],lb:List[B])(f: (List[A],List[B]) => String) : String =
-    f(la,lb)
-
-//res41: String = 19aa2b3c
-def f1[A,B](la: List[A],lb:List[B]):String = 
-    (la zip lb).flatMap(tuple => Seq(tuple._1, tuple._2)).mkString
-
-def f2[A,B](la: List[A], lb:List[B]): String = (la ::: lb).mkString
-
-def f3[A,B](la: List[A], lb:List[B]): String = ((la.reverse) ::: lb).mkString
-
-// 3291aabc
-def f4[A,B](la: List[A], lb:List[B]): String = 
-    (la.reverse.flatMap(elem => elem.toString().reverse) ::: lb).mkString
-
-
-applyF_(List(19, 2, 3), List("aa", "b", "c"))(f4) 

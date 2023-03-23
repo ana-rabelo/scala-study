@@ -61,3 +61,38 @@ case Val(v) => v }
 eval(Sum(Val(1),Val(2)))
 
 val v1 = 1
+
+sealed trait Item
+
+// Article: A single article with a description and a price
+final case class Article(description: String, price: Double) extends Item
+
+//Bundle: a number of items that are sold together. The bundle has a
+// discount percentage, which must used to calculate the bundle’s price 
+final case class Bundle(description: String, discount: Double, items: List[Item]) extends Item
+
+//Multiple: a number of items that are sold together
+final case class Multiple(count: Int, item: Item) extends Item
+
+
+object ItemOps:
+  // TODO: Use pattern matching to implement the price function
+  def price(it: Item): Double = it match {
+    case Article(description, price) => price
+    case Bundle(description, discount, items) => items.map(price).sum * (1 - discount)
+    case Multiple(count, item) => count * price(item)
+  }
+
+val description1 = "a1"
+val description2 = "a2"
+val price1 = 2.5
+val price2 = 10.0
+val a1 = Article(description1, price1)
+val a2 = Article(description2, price2)
+val discount1 = 0.2
+val b1 = Bundle("b1", discount1, List(a1,a2))
+val mm1 = 1
+val m1 = Multiple(mm1, b1)
+
+ItemOps.price(m1)
+
