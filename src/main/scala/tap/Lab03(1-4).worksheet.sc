@@ -1,3 +1,6 @@
+import scala.annotation.targetName
+import scala.util.matching.Regex
+import fansi.Str
 import scala.annotation.tailrec
 //  #1
 val aList:List[Int] = List(1, 2, 3)
@@ -47,4 +50,3 @@ for (elem <- l if elem.startsWith("Jo")) yield elem
 val x = (i: Int) => if (i < 0) -i else i
 List(1, 2, 3, -1, -2, -3, 0).map(x)
 //> Result: List[Int] = List(1, 2, 3, 1, 2, 3, 0)
-

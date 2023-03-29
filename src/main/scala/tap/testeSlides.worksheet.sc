@@ -1,3 +1,4 @@
+import scala.util.matching.Regex
 val lp = List(1,2,3,4,5)
 lp.patch(2,Seq(99),2)
 
@@ -96,3 +97,7 @@ val m1 = Multiple(mm1, b1)
 
 ItemOps.price(m1)
 
+
+val lettersAndSpace: Regex = "[A-Za-z ]".r
+val ana: String = "Ana Silva"
+lettersAndSpace.findAllIn(ana).mkString == ana
